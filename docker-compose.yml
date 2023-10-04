@@ -1,0 +1,17 @@
+---
+version: "3"
+services:
+  compilation:
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+    volumes:
+      - app:/boxfuse-sample-java-war-hello/target
+  production:
+    image: tomcat:9.0.8-jre8-alpine
+    ports:
+      - 8080:8080
+    volumes:
+      - app:/usr/local/tomcat/webapps
+volumes:
+  app:
